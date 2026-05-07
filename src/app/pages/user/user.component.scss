@@ -1,0 +1,39 @@
+.common-page {
+  .common-query-container {
+    nz-form-item {
+      margin-bottom: 0;
+    }
+  }
+
+  .common-table-container {
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .table-title {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    :host ::ng-deep {
+      .ant-table-thead > tr > th {
+        background-color: #fafafa;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+nz-upload {
+  :host ::ng-deep {
+    .ant-upload-select-picture-card {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

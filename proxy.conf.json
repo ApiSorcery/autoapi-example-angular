@@ -1,0 +1,10 @@
+{
+  "/demo-api": {
+    "target": "https://www.apisorcery.com/demo-api/",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/demo-api": ""
+    }
+  }
+}

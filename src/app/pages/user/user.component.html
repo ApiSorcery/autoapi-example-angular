@@ -1,0 +1,283 @@
+<div class="common-page">
+  <!-- Search Form -->
+  <div class="common-query-container">
+    <form nz-form [nzLayout]="'inline'">
+      <nz-form-item>
+        <nz-form-label>Code</nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            [(ngModel)]="queryParams.code"
+            name="code"
+            placeholder="Enter code"
+            style="width: 200px"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Name</nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            [(ngModel)]="queryParams.name"
+            name="name"
+            placeholder="Enter name"
+            style="width: 200px"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Status</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            [(ngModel)]="queryParams.status"
+            name="status"
+            nzAllowClear
+            nzPlaceHolder="Select status"
+            style="width: 150px"
+          >
+            <nz-option
+              *ngFor="let option of statusOptions"
+              [nzValue]="option.value"
+              [nzLabel]="option.label"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <nz-space>
+            <button *nzSpaceItem nz-button nzType="primary" (click)="handleSearch()">
+              Search
+            </button>
+            <button *nzSpaceItem nz-button (click)="handleReset()">Reset</button>
+            <button *nzSpaceItem nz-button (click)="handleExport()">Export</button>
+          </nz-space>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+
+  <!-- Table -->
+  <div class="common-table-container">
+    <div class="table-header">
+      <h3 class="table-title">User Information</h3>
+      <button nz-button nzType="primary" (click)="handleAdd()">Create</button>
+    </div>
+
+    <nz-table
+      #basicTable
+      [nzData]="users"
+      [nzLoading]="loading"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzFrontPagination]="false"
+      [nzShowSizeChanger]="true"
+      [nzPageSizeOptions]="[10, 20, 50, 100]"
+      (nzPageIndexChange)="onPageIndexChange($event)"
+      (nzPageSizeChange)="onPageSizeChange($event)"
+      [nzScroll]="{ x: '1400px' }"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="60px">No.</th>
+          <th nzWidth="120px" nzAlign="center">Code</th>
+          <th nzWidth="100px">Name</th>
+          <th nzWidth="180px">Email</th>
+          <th nzWidth="120px">Gender</th>
+          <th nzWidth="80px" nzAlign="center">Avatar</th>
+          <th nzWidth="240px">Address</th>
+          <th nzWidth="120px">Status</th>
+          <th nzWidth="180px">Last Modified</th>
+          <th nzWidth="180px">Created</th>
+          <th nzWidth="160px" nzRight>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of basicTable.data; let i = index">
+          <td>{{ (pageIndex - 1) * pageSize + i + 1 }}</td>
+          <td nzAlign="center">
+            <a (click)="handleView(user)">{{ user.code }}</a>
+          </td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <nz-tag>{{ getGenderLabel(user.gender) }}</nz-tag>
+          </td>
+          <td nzAlign="center">
+            <img
+              *ngIf="user.avatar"
+              nz-image
+              [nzSrc]="user.avatar"
+              alt="avatar"
+              width="50"
+              height="50"
+              style="object-fit: cover; border-radius: 4px"
+            />
+          </td>
+          <td>{{ user.address }}</td>
+          <td>
+            <nz-tag [nzColor]="getStatusColor(user.status)">
+              {{ getStatusLabel(user.status) }}
+            </nz-tag>
+          </td>
+          <td>{{ user.updatedAt }}</td>
+          <td>{{ user.createdAt }}</td>
+          <td nzRight>
+            <nz-space>
+              <button
+                *nzSpaceItem
+                nz-button
+                nzType="link"
+                nzSize="small"
+                (click)="handleEdit(user)"
+                [disabled]="user.id === 2"
+                [hidden]="!user.id || user.id < 2"
+              >
+                Edit
+              </button>
+              <button
+                *nzSpaceItem
+                nz-button
+                nzType="link"
+                nzSize="small"
+                nzDanger
+                (click)="handleDelete(user)"
+              >
+                Delete
+              </button>
+            </nz-space>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<!-- Modal -->
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  [nzTitle]="modalTitle"
+  [nzWidth]="900"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleModalCancel()"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [nzLayout]="'horizontal'">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>Code</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input
+            nz-input
+            [(ngModel)]="userForm.code"
+            name="code"
+            placeholder="Enter code"
+            [disabled]="operateType !== 'add' || isViewMode"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>Name</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input
+            nz-input
+            [(ngModel)]="userForm.name"
+            name="name"
+            placeholder="Enter name"
+            [disabled]="isViewMode"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>Email</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input
+            nz-input
+            [(ngModel)]="userForm.email"
+            name="email"
+            type="email"
+            placeholder="Enter email"
+            [disabled]="isViewMode"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">Gender</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-radio-group [(ngModel)]="userForm.gender" name="gender" [nzDisabled]="isViewMode">
+            <label
+              *ngFor="let option of genderOptions"
+              nz-radio
+              [nzValue]="option.value"
+              >{{ option.label }}</label
+            >
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">Address</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <textarea
+            nz-input
+            [(ngModel)]="userForm.address"
+            name="address"
+            placeholder="Enter address"
+            [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+            [disabled]="isViewMode"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">Avatar</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-upload
+            [nzAction]="uploadUrl"
+            [nzListType]="'picture-card'"
+            [(nzFileList)]="fileList"
+            [nzShowUploadList]="{ showPreviewIcon: false, showRemoveIcon: !isViewMode }"
+            [nzBeforeUpload]="beforeUpload"
+            (nzChange)="handleUploadChange($event)"
+            [nzDisabled]="isViewMode"
+            [nzLimit]="1"
+            [nzShowButton]="fileList.length < 1"
+          >
+            <div>
+              <span nz-icon nzType="plus"></span>
+              <div style="margin-top: 8px">Upload</div>
+            </div>
+          </nz-upload>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">Enabled</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-switch [(ngModel)]="userForm.status" name="status" [nzDisabled]="isViewMode">
+          </nz-switch>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+
+  <ng-template #modalFooter>
+    <button nz-button (click)="handleModalCancel()">Cancel</button>
+    <button
+      *ngIf="!isViewMode"
+      nz-button
+      nzType="primary"
+      [nzLoading]="isSaving"
+      (click)="handleModalOk()"
+    >
+      OK
+    </button>
+  </ng-template>
+</nz-modal>
