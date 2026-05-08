@@ -51,7 +51,9 @@
             }
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       }
     },
     "/user/export": {
@@ -92,7 +94,9 @@
             "description": ""
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       }
     },
     "/user/validateCode": {
@@ -133,7 +137,9 @@
             }
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       }
     },
     "/user/{id}": {
@@ -174,7 +180,9 @@
             }
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       },
       "delete": {
         "operationId": "removeUser",
@@ -214,7 +222,9 @@
             }
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       }
     },
     "/user": {
@@ -255,7 +265,9 @@
             }
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       },
       "patch": {
         "operationId": "modifyUser",
@@ -295,7 +307,9 @@
             }
           }
         },
-        "tags": ["User"]
+        "tags": [
+          "User"
+        ]
       }
     },
     "/file/upload": {
@@ -347,7 +361,9 @@
             }
           }
         },
-        "tags": ["File"]
+        "tags": [
+          "File"
+        ]
       }
     },
     "/file/{id}": {
@@ -388,7 +404,9 @@
             }
           }
         },
-        "tags": ["File"]
+        "tags": [
+          "File"
+        ]
       },
       "delete": {
         "operationId": "deleteFile",
@@ -428,7 +446,9 @@
             }
           }
         },
-        "tags": ["File"]
+        "tags": [
+          "File"
+        ]
       }
     }
   },
@@ -476,7 +496,11 @@
             "description": "Response data"
           }
         },
-        "required": ["status", "message", "data"]
+        "required": [
+          "status",
+          "message",
+          "data"
+        ]
       },
       "UserInfoDto": {
         "type": "object",
@@ -524,7 +548,13 @@
             "description": "Updated time"
           }
         },
-        "required": ["id", "code", "name", "email", "createdAt"]
+        "required": [
+          "id",
+          "code",
+          "name",
+          "email",
+          "createdAt"
+        ]
       },
       "Pagination": {
         "type": "object",
@@ -608,7 +638,11 @@
             "description": "Status"
           }
         },
-        "required": ["code", "name", "email"]
+        "required": [
+          "code",
+          "name",
+          "email"
+        ]
       },
       "UserModifyRequestDto": {
         "type": "object",
@@ -648,7 +682,9 @@
             "description": "Status"
           }
         },
-        "required": ["id"]
+        "required": [
+          "id"
+        ]
       }
     }
   },

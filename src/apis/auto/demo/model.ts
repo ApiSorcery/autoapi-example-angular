@@ -60,193 +60,199 @@ export interface GetUserPagedResponse {
 }
 
 export interface ResultData {
-  /**
-   * Status code
-   */
+/**
+ * Status code
+ */
   status: number;
 
-  /**
-   * Status description
-   */
+/**
+ * Status description
+ */
   message: string;
 
-  /**
-   * Response data
-   */
+/**
+ * Response data
+ */
   data: any;
+
 }
 
 export interface UserInfoDto {
-  /**
-   * User ID
-   */
+/**
+ * User ID
+ */
   id: number;
 
-  /**
-   * User code
-   */
+/**
+ * User code
+ */
   code: string;
 
-  /**
-   * User name
-   */
+/**
+ * User name
+ */
   name: string;
 
-  /**
-   * Email
-   */
+/**
+ * Email
+ */
   email: string;
 
-  /**
-   * Gender
-   */
+/**
+ * Gender
+ */
   gender?: number;
 
-  /**
-   * Avatar
-   */
+/**
+ * Avatar
+ */
   avatar?: string;
 
-  /**
-   * Address
-   */
+/**
+ * Address
+ */
   address?: string;
 
-  /**
-   * Status
-   */
+/**
+ * Status
+ */
   status?: boolean;
 
-  /**
-   * Created time
-   */
+/**
+ * Created time
+ */
   createdAt: string;
 
-  /**
-   * Updated time
-   */
+/**
+ * Updated time
+ */
   updatedAt?: string;
+
 }
 
 export interface Pagination {
-  /**
-   * Page number
-   */
+/**
+ * Page number
+ */
   page?: number;
 
-  /**
-   * Items per page
-   */
+/**
+ * Items per page
+ */
   limit?: number;
 
-  /**
-   * Sort field
-   */
+/**
+ * Sort field
+ */
   sortBy?: string;
 
-  /**
-   * Sort order
-   */
+/**
+ * Sort order
+ */
   order?: string;
+
 }
 
 export interface UserPageQueryDto {
-  /**
-   * Pagination parameters
-   */
+/**
+ * Pagination parameters
+ */
   pagination?: Pagination;
 
-  /**
-   * User code
-   */
+/**
+ * User code
+ */
   code?: string;
 
-  /**
-   * User name
-   */
+/**
+ * User name
+ */
   name?: string;
 
-  /**
-   * User status
-   */
+/**
+ * User status
+ */
   status?: boolean;
+
 }
 
 export interface UserAddRequestDto {
-  /**
-   * User code
-   */
+/**
+ * User code
+ */
   code: string;
 
-  /**
-   * User name
-   */
+/**
+ * User name
+ */
   name: string;
 
-  /**
-   * Email
-   */
+/**
+ * Email
+ */
   email: string;
 
-  /**
-   * Gender
-   */
+/**
+ * Gender
+ */
   gender?: number;
 
-  /**
-   * Avatar
-   */
+/**
+ * Avatar
+ */
   avatar?: string;
 
-  /**
-   * Address
-   */
+/**
+ * Address
+ */
   address?: string;
 
-  /**
-   * Status
-   */
+/**
+ * Status
+ */
   status?: boolean;
+
 }
 
 export interface UserModifyRequestDto {
-  /**
-   * User ID
-   */
+/**
+ * User ID
+ */
   id: number;
 
-  /**
-   * User code
-   */
+/**
+ * User code
+ */
   code?: string;
 
-  /**
-   * User name
-   */
+/**
+ * User name
+ */
   name?: string;
 
-  /**
-   * Email
-   */
+/**
+ * Email
+ */
   email?: string;
 
-  /**
-   * Gender
-   */
+/**
+ * Gender
+ */
   gender?: number;
 
-  /**
-   * Avatar
-   */
+/**
+ * Avatar
+ */
   avatar?: string;
 
-  /**
-   * Address
-   */
+/**
+ * Address
+ */
   address?: string;
 
-  /**
-   * Status
-   */
+/**
+ * Status
+ */
   status?: boolean;
+
 }
