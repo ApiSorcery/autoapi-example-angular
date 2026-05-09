@@ -52,13 +52,6 @@ export interface UploadFileRequest {
   onUploadProgress: (progressEvent: ProgressEvent) => void;
 }
 
-/** Query user list with pagination response parameters */
-export interface GetUserPagedResponse {
-  results: Array<UserInfoDto>;
-
-  total: number;
-}
-
 export interface ResultData {
   /**
    * Status code
