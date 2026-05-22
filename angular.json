@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "autoapi-example-angular": {
+    "apisorcery-example-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "autoapi-example-angular:build:production"
+              "buildTarget": "apisorcery-example-angular:build:production"
             },
             "development": {
-              "buildTarget": "autoapi-example-angular:build:development"
+              "buildTarget": "apisorcery-example-angular:build:development"
             }
           },
           "defaultConfiguration": "development",

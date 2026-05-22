@@ -1,6 +1,6 @@
 # ApiSorcery - Angular Example
 
-This is an Angular 18 + TypeScript example application that demonstrates API integration using AutoAPI.
+This is an Angular 18 + TypeScript example application that demonstrates API integration using ApiSorcery.
 
 ## Features
 
@@ -10,7 +10,7 @@ This is an Angular 18 + TypeScript example application that demonstrates API int
 - ✅ Form Validation
 - ✅ Image Upload
 - ✅ Status Management
-- ✅ Type-safe API calls with AutoAPI
+- ✅ Type-safe API calls with ApiSorcery
 
 ## Tech Stack
 
@@ -19,7 +19,7 @@ This is an Angular 18 + TypeScript example application that demonstrates API int
 - **NG-ZORRO** - Ant Design for Angular
 - **RxJS** - Reactive programming
 - **Axios** - HTTP client
-- **AutoAPI** - API code generation
+- **ApiSorcery** - API code generation
 - **Day.js** - Date manipulation
 
 ## Prerequisites
@@ -64,7 +64,7 @@ The application will be available at: http://localhost:9527/
 ## Project Structure
 
 ```
-autoapi-example-angular/
+apisorcery-example-angular/
 ├── src/
 │   ├── apis/
 │   │   └── auto/          # Auto-generated API code
@@ -79,7 +79,7 @@ autoapi-example-angular/
 │   ├── index.html         # HTML entry point
 │   ├── main.ts            # Application entry
 │   └── styles.scss        # Global styles
-├── .apisorceryrc.json        # AutoAPI configuration
+├── .apisorceryrc.json        # ApiSorcery configuration
 ├── angular.json           # Angular CLI configuration
 ├── proxy.conf.json        # Development proxy configuration
 ├── tsconfig.json          # TypeScript configuration
@@ -88,7 +88,7 @@ autoapi-example-angular/
 
 ## API Configuration
 
-The application uses AutoAPI to generate type-safe API client code. Configuration is in `.apisorceryrc.json`:
+The application uses ApiSorcery to generate type-safe API client code. Configuration is in `.apisorceryrc.json`:
 
 ```json
 {
@@ -183,7 +183,7 @@ Use the provided deployment script:
 - npm version: >= 10.0.0
 - Angular version: 18.2.0
 - NG-ZORRO version: 18.2.0
-- AutoAPI version: Latest
+- ApiSorcery version: Latest
 
 ## License
 
