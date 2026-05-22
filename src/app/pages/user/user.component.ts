@@ -112,7 +112,7 @@ export class UserComponent implements OnInit {
         ...this.queryParams,
       });
 
-      this.users = (res.results || []).map((r) => ({
+      this.users = (res.results || []).map((r: any) => ({
         ...r,
         createdAt: dayjs(r.createdAt).format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: dayjs(r.updatedAt).format('YYYY-MM-DD HH:mm:ss'),
